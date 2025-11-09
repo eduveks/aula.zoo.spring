@@ -2,7 +2,7 @@ package br.com.letscode.zoo.config;
 
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 @Configuration
 public class BaseConfig {

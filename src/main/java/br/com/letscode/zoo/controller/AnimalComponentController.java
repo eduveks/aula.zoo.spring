@@ -46,23 +46,23 @@ public class AnimalComponentController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody AnimalDTO animal) {
+    public ResponseEntity<?> create(@RequestBody AnimalDTO animal) {
         ResponseEntity.noContent().build();
         dbList.add(animal);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public ResponseEntity update(@RequestParam("id") int index, @RequestBody AnimalDTO animal) {
-        List myList = dbList;
+    public ResponseEntity<?> update(@RequestParam("id") int index, @RequestBody AnimalDTO animal) {
+        List<AnimalDTO> myList = dbList;
         myList.remove(index);
         myList.add(animal);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
-    public ResponseEntity delete(@RequestParam("id") int index) {
-        List myList = dbList;
+    public ResponseEntity<?> delete(@RequestParam("id") int index) {
+        List<AnimalDTO> myList = dbList;
         myList.remove(index);
         return ResponseEntity.ok().build();
     }

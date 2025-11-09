@@ -1,18 +1,14 @@
 package br.com.letscode.zoo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
 @Table(name="category")
-@Getter
-@Setter
+@Data
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

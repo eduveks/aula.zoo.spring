@@ -1,20 +1,23 @@
 package br.com.letscode.zoo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class AnimalDTO {
     private String uid;
+    @Schema(name = "Nome do Animal", example = "Leão")
     @NotBlank(message="O nome é obrigatório.")
     @Size(min = 3, message="Nome muito curto.")
     private String name;
 
+    @Schema(name = "Idade do Animal", example = "15")
     @Min(value = 1, message = "Idade inválida.")
     @Max(value = 100, message = "Idade inválida.")
     private int age;

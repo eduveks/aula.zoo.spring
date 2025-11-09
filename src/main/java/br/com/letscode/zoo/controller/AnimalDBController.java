@@ -4,6 +4,10 @@ import br.com.letscode.zoo.dto.AnimalDTO;
 import br.com.letscode.zoo.dto.FactoryDTO;
 import br.com.letscode.zoo.exception.NotFoundException;
 import br.com.letscode.zoo.service.AnimalService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +28,11 @@ public class AnimalDBController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnimalDBController.class);
     private AnimalService animalService;
 
+    @Operation(summary = "Obtém os dados dos Animais", description = "Retorna o detalhe de um animal.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Dados do animal correspondente ao UID."),
+            @ApiResponse(responseCode = "404", description = "Nenhum animal foi encontrado com o UID.")
+    })
     @GetMapping("/{uid}")
     public ResponseEntity<AnimalDTO> getByUid(@PathVariable(value = "uid") String uid) {
         try {
@@ -37,7 +46,7 @@ public class AnimalDBController {
     }
 
     @PostMapping
-    public ResponseEntity create(@Valid @RequestBody AnimalDTO animalDTO) {
+    public ResponseEntity<?> create(@Valid @RequestBody AnimalDTO animalDTO) {
         var animal = FactoryDTO.dtoToEntity(animalDTO);
         try {
             animalService.create(animal);
@@ -49,7 +58,7 @@ public class AnimalDBController {
     }
 
     @PutMapping
-    public ResponseEntity update(@RequestBody AnimalDTO animalDTO) {
+    public ResponseEntity<?> update(@RequestBody AnimalDTO animalDTO) {
         var animal = FactoryDTO.dtoToEntity(animalDTO);
         try {
             animalService.update(animal);
@@ -61,7 +70,7 @@ public class AnimalDBController {
     }
 
     @DeleteMapping
-    public ResponseEntity remove(@RequestParam("uid") String uid) {
+    public ResponseEntity<?> remove(@RequestParam("uid") String uid) {
         try {
             animalService.remove(uid);
             return ResponseEntity.ok().build();

@@ -9,7 +9,7 @@ import br.com.letscode.zoo.service.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.UUID;
 
 @Configuration
@@ -25,15 +25,16 @@ public class CategoryDBConfig {
         category1.setUid("b59c8b8b-2326-4f1d-bacf-dc45f30b13fa");
         category1.setName("Peixe");
         categoryRepository.saveAndFlush(category1);
+
         Category category2 = new Category();
         category2.setUid("912d5a73-cd51-4ca3-b293-6c1626b63d9c");
         category2.setName("Mamífero");
         categoryRepository.saveAndFlush(category2);
+
         Category category3 = new Category();
         category3.setUid("6c3293d0-f536-4fc3-9a3d-eac45c086325");
         category3.setName("Ave");
         categoryRepository.saveAndFlush(category3);
-
 
         Animal animal1 = new Animal();
         animal1.setUid(UUID.randomUUID().toString());
