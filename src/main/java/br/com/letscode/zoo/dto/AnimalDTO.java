@@ -12,12 +12,12 @@ import jakarta.validation.constraints.*;
 @Data
 public class AnimalDTO {
     private String uid;
-    @Schema(name = "Nome do Animal", example = "Leão")
+    @Schema(description = "Nome do Animal", example = "Leão")
     @NotBlank(message="O nome é obrigatório.")
     @Size(min = 3, message="Nome muito curto.")
     private String name;
 
-    @Schema(name = "Idade do Animal", example = "15")
+    @Schema(description = "Idade do Animal", example = "15")
     @Min(value = 1, message = "Idade inválida.")
     @Max(value = 100, message = "Idade inválida.")
     private int age;
