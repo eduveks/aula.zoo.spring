@@ -10,4 +10,7 @@ import java.util.List;
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query("SELECT a FROM Animal a JOIN FETCH a.category c WHERE a.uid = :uid")
     List<Animal> findByUid(@Param("uid") String uid);
+
+    @Query("SELECT a FROM Animal a JOIN FETCH a.category c WHERE a.name LIKE %:name%")
+    List<Animal> findAllByName(String name);
 }

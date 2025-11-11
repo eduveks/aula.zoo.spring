@@ -42,4 +42,8 @@ public class AnimalService {
         Animal animalDB = findByUid(uid);
         animalRepository.delete(animalDB);
     }
+
+    public List<Animal> findAllByName(String name) {
+        return animalRepository.findAllByName(name.toLowerCase());
+    }
 }
