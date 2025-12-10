@@ -29,11 +29,11 @@ public class JWTUtil {
                 .withIssuedAt(new Date())
                 .withIssuer(issuer)
                 .withExpiresAt(Instant.now().plusMillis(jwtExpiration))
-                .sign(Algorithm.HMAC256(secret));
+                .sign(Algorithm.HMAC512(secret));
     }
 
     public String validateTokenAndRetrieveSubject(String token) throws JWTVerificationException {
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret))
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC512(secret))
                 .withSubject("User Details")
                 .withIssuer(issuer)
                 .build();
