@@ -3,6 +3,9 @@ package br.com.letscode.zoo.dto;
 import br.com.letscode.zoo.model.Animal;
 import br.com.letscode.zoo.model.Category;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class FactoryDTO {
 
     public static CategoryDTO entityToDTO(Category category) {
@@ -23,6 +26,11 @@ public class FactoryDTO {
         );
     }
 
+    public static List<AnimalDTO> entityToDTO(List<Animal> animals) {
+        return animals.stream().map(FactoryDTO::entityToDTO)
+                .toList();
+    }
+
     public static Category dtoToEntity(CategoryDTO categoryDTO) {
         if (categoryDTO == null) {
             return null;
@@ -40,5 +48,10 @@ public class FactoryDTO {
         animal.setAge(animalDTO.getAge());
         animal.setCategory(dtoToEntity(animalDTO.getCategory()));
         return animal;
+    }
+
+    public static List<Animal> dtoToEntity(List<AnimalDTO> animals) {
+        return animals.stream().map(FactoryDTO::dtoToEntity)
+                .toList();
     }
 }

@@ -10,6 +10,7 @@ import jakarta.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Schema(name = "Animal", title = "Animal", description = "Dados dos Animais")
 public class AnimalDTO {
     private String uid;
     @Schema(description = "Nome do Animal", example = "Leão")

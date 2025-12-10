@@ -4,6 +4,7 @@ import br.com.letscode.zoo.exception.NotFoundException;
 import br.com.letscode.zoo.model.Animal;
 import br.com.letscode.zoo.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class AnimalService {
         animalRepository.delete(animalDB);
     }
 
-    public List<Animal> findAllByName(String name) {
-        return animalRepository.findAllByName(name.toLowerCase());
+    public List<Animal> findAllByName(String name, Pageable p) {
+        return animalRepository.findAllByName(name.toLowerCase(), p);
     }
 }
